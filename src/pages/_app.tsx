@@ -1,8 +1,10 @@
 import { alegreya, roboto } from '@/fonts'
+import { store } from '@/redux/store'
 import '@/styles/globals.css'
 import { AppPropsWithLayout, iChildren } from '@/types'
 import { SessionProvider, useSession } from 'next-auth/react'
 import { Toaster } from 'react-hot-toast'
+import { Provider } from 'react-redux'
 
 export default function App({ Component, pageProps }: AppPropsWithLayout) {
   const { session, ...otherProps } = pageProps
@@ -10,16 +12,18 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
 
   return (
     <SessionProvider session={session}>
-      <Auth>
-        <style jsx global>{`
-          :root {
-            --font-roboto: ${roboto.style.fontFamily};
-            --font-alegreya: ${alegreya.style.fontFamily};
-          }
-        `}</style>
-        {getLayout(<Component {...otherProps} />)}
-        <Toaster />
-      </Auth>
+      <Provider store={store}>
+        <Auth>
+          <style jsx global>{`
+            :root {
+              --font-roboto: ${roboto.style.fontFamily};
+              --font-alegreya: ${alegreya.style.fontFamily};
+            }
+          `}</style>
+          {getLayout(<Component {...otherProps} />)}
+          <Toaster />
+        </Auth>
+      </Provider>
     </SessionProvider>
   )
 }

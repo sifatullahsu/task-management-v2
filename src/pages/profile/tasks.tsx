@@ -1,13 +1,12 @@
 import AddList from '@/components/workspace/AddList'
 import Column from '@/components/workspace/Column'
 import TaskLayout from '@/layouts/TaskLayout'
+import { useGetListsWithTaskQuery } from '@/redux/api/listApi'
 import { NextLayout } from '@/types'
-import { useSession } from 'next-auth/react'
 
 const TasksPage: NextLayout = () => {
-  const { data: session } = useSession()
-
-  console.log(session)
+  const { data } = useGetListsWithTaskQuery(undefined)
+  console.log(data)
 
   return (
     <div className="relative">
