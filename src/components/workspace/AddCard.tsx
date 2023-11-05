@@ -1,15 +1,26 @@
+import { useCreateTaskMutation } from '@/redux/api/taskApi'
 import { useState } from 'react'
+import toast from 'react-hot-toast/headless'
 import { AiOutlineClose } from 'react-icons/ai'
 import { BsPlusLg } from 'react-icons/bs'
 
-const AddCard = () => {
+const AddCard = ({ listId }: { listId: string }) => {
   const [open, setOpen] = useState(false)
   const [title, setTitle] = useState('')
 
-  const handleAddList = () => {
+  const [createTask] = useCreateTaskMutation()
+
+  const handleAddList = async () => {
     if (title.length > 0) {
-      setOpen(false)
-      setTitle('')
+      const res = await createTask({ data: { title, list: listId } }).unwrap()
+
+      if (res.status) {
+        toast.success(res.message)
+        setOpen(false)
+        setTitle('')
+      } else {
+        toast.error(res.message)
+      }
     }
   }
 

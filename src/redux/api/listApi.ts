@@ -23,7 +23,7 @@ export const listApi = baseApi.injectEndpoints({
         url: `/lists/with-task`,
         method: 'GET'
       }),
-      providesTags: [tags.lists]
+      providesTags: [tags.lists, tags.tasks]
     }),
     getList: build.query({
       query: ({ id, query }) => ({
