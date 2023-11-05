@@ -1,6 +1,6 @@
 import { useCreateTaskMutation } from '@/redux/api/taskApi'
 import { useState } from 'react'
-import toast from 'react-hot-toast/headless'
+import toast from 'react-hot-toast'
 import { AiOutlineClose } from 'react-icons/ai'
 import { BsPlusLg } from 'react-icons/bs'
 

@@ -1,4 +1,6 @@
+import { useCreateListMutation } from '@/redux/api/listApi'
 import { useState } from 'react'
+import toast from 'react-hot-toast'
 import { AiOutlineClose } from 'react-icons/ai'
 import { BsPlusLg } from 'react-icons/bs'
 
@@ -6,10 +8,19 @@ const AddList = () => {
   const [open, setOpen] = useState(false)
   const [title, setTitle] = useState('')
 
-  const handleAddList = () => {
+  const [createList] = useCreateListMutation()
+
+  const handleAddList = async () => {
     if (title.length > 0) {
-      setOpen(false)
-      setTitle('')
+      const res = await createList({ data: { title } }).unwrap()
+
+      if (res.status) {
+        toast.success(res.message)
+        setOpen(false)
+        setTitle('')
+      } else {
+        toast.error(res.message)
+      }
     }
   }
 
