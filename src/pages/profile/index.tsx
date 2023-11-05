@@ -1,6 +1,8 @@
+import TaskLayout from '@/layouts/TaskLayout'
+import { NextLayout } from '@/types'
 import { useSession } from 'next-auth/react'
 
-const ProfilePage = () => {
+const ProfilePage: NextLayout = () => {
   const { data: session } = useSession()
 
   console.log(session)
@@ -11,5 +13,6 @@ const ProfilePage = () => {
     </div>
   )
 }
+ProfilePage.getLayout = page => <TaskLayout>{page}</TaskLayout>
 
 export default ProfilePage

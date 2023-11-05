@@ -9,7 +9,7 @@ const config: Config = {
         DEFAULT: '15px'
       },
       screens: {
-        default: '1400px'
+        default: '1200px'
       }
     },
     screens: {

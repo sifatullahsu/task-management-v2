@@ -15,7 +15,7 @@ const LoginPage: NextLayout = () => {
     signIn('credentials', {
       ...data,
       redirect: true,
-      callbackUrl: '/profile'
+      callbackUrl: '/profile/tasks'
     })
   }
 
