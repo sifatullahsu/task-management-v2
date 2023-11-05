@@ -2,6 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  @apply font-roboto
+}
+
+/* Define the styles for the scrollbar track */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+/* Define the styles for the scrollbar thumb (the draggable part) */
+::-webkit-scrollbar-thumb {
+  border-radius: 6px;
+  @apply bg-neutral;
+}
+
+/* Define the styles for the scrollbar track when hovered */
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-neutral-content;
+}
+
+/* Define the styles for the scrollbar track (the background) */
+::-webkit-scrollbar-track {
+  border-radius: 6px;
+  @apply bg-neutral-focus;
+}
+
+
 .btn {
   text-transform: unset;
 }
@@ -10,7 +38,7 @@
   display: flex;
   flex-direction: row;
   position: absolute;
-  height: calc(100vh - 66px);
+  height: calc(100vh - 70px);
   top: 0;
   right: 0;
   left: 0;
@@ -26,6 +54,8 @@
   align-self: flex-start;
   height: 100%;
   padding: 0 6px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .workspace>li>div {

@@ -1,5 +1,6 @@
-import AddListButton from '@/components/workspace/AddListButton'
-import ListCol from '@/components/workspace/ListCol'
+import AddList from '@/components/workspace/AddList'
+import Column from '@/components/workspace/Column'
+
 import TaskLayout from '@/layouts/TaskLayout'
 import { NextLayout } from '@/types'
 
@@ -8,9 +9,12 @@ const TasksPage: NextLayout = () => {
     <div className="relative">
       <div>
         <ol className="workspace">
-          <ListCol>
-            <AddListButton />
-          </ListCol>
+          <Column />
+          <Column />
+          <Column />
+          <li>
+            <AddList />
+          </li>
         </ol>
       </div>
     </div>
