@@ -39,6 +39,7 @@ const AddCard = ({ listId }: { listId: string }) => {
             className="px-3 py-2 text-sm bg-neutral w-full rounded"
             onChange={e => setTitle(e.target.value)}
             onKeyDown={e => e.key === 'Enter' && handleAddTask()}
+            autoFocus={true}
           />
           <div className="space-x-2 mt-2 flex align-middle">
             <button className="btn btn-primary btn-sm" onClick={handleAddTask} disabled={loading}>
