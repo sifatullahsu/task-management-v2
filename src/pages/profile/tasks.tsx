@@ -16,6 +16,9 @@ const TasksPage: NextLayout = () => {
         {data?.data?.map((list: any) => <Column key={list._id} list={list} />)}
         <li>
           <AddList />
+          <p className="text-sm text-accent mt-5">
+            Drag & Drop functionality <br /> will be added here.
+          </p>
         </li>
       </ol>
     </div>

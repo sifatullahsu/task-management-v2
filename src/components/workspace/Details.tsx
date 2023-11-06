@@ -3,6 +3,7 @@ import { Dispatch, SetStateAction, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { AiOutlineDelete } from 'react-icons/ai'
+import { BiEdit } from 'react-icons/bi'
 import { HiBars3BottomLeft } from 'react-icons/hi2'
 
 type Inputs = {
@@ -29,15 +30,19 @@ const Details = ({
   const { data, isLoading } = useGetTaskQuery({ id: _id })
 
   const [deleteConfirmation, setDeleteConfirmation] = useState(false)
+  const [isDeleting, setIsDeleting] = useState(false)
   const [deleteTask] = useDeleteTaskMutation()
   const deleteHandler = async () => {
+    setIsDeleting(true)
     const res = await deleteTask({ id: _id }).unwrap()
 
     if (res.status) {
       toast.success(res.message)
+      setIsDeleting(false)
       setOpen(false)
     } else {
       toast.error(res.message)
+      setIsDeleting(false)
     }
   }
 
@@ -60,9 +65,12 @@ const Details = ({
       <div className="modal-box min-w-[700px] bg-neutral-focus">
         <form onSubmit={handleSubmit(onSubmit)}>
           {!titleOpen ? (
-            <h3 className="font-bold text-lg cursor-pointer" onClick={() => setTitleOpen(true)}>
-              {data?.data.title}
-            </h3>
+            <div className="relative group">
+              <h3 className="font-bold text-lg cursor-pointer " onClick={() => setTitleOpen(true)}>
+                {data?.data.title}
+              </h3>
+              <BiEdit className="absolute hidden top-0 right-8 text-primary group-hover:inline bg-neutral-focus p-1 text-2xl" />
+            </div>
           ) : (
             <>
               <div className="font-semibold mb-3">
@@ -137,6 +145,7 @@ const Details = ({
               type="button"
               className="btn btn-outline btn-sm ml-5"
               onClick={() => setDeleteConfirmation(true)}
+              disabled={isSubmitting}
             >
               <AiOutlineDelete /> Delete the task
             </button>
@@ -151,7 +160,12 @@ const Details = ({
                 deleted, this item will be permanently removed and cannot be recovered.
               </p>
               <div className="modal-action space-x-3">
-                <button className="btn btn-warning btn-sm" onClick={() => deleteHandler()}>
+                <button
+                  className="btn btn-warning btn-sm"
+                  onClick={() => deleteHandler()}
+                  disabled={isDeleting}
+                >
+                  {isDeleting && <span className="loading loading-spinner"></span>}
                   Yes Delete
                 </button>
                 <button className="btn btn-ghost btn-sm" onClick={() => setDeleteConfirmation(false)}>
