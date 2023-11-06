@@ -14,7 +14,6 @@ type Inputs = {
 
 const ProfilePage: NextLayout = () => {
   const { data: session } = useSession()
-  console.log(session)
 
   const { register, handleSubmit, reset } = useForm<Inputs>({
     defaultValues: {

@@ -3,7 +3,7 @@ import { NextAuthOptions } from 'next-auth'
 import NextAuth from 'next-auth/next'
 import CredentialsProvider from 'next-auth/providers/credentials'
 
-const SERVER_URL = process.env.SERVER_URL
+const SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL
 
 const options: NextAuthOptions = {
   providers: [

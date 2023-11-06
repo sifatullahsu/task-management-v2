@@ -12,14 +12,12 @@ const TasksPage: NextLayout = () => {
 
   return (
     <div className="relative">
-      <div>
-        <ol className="workspace">
-          {data?.data?.map((list: any) => <Column key={list._id} list={list} />)}
-          <li>
-            <AddList />
-          </li>
-        </ol>
-      </div>
+      <ol className="workspace">
+        {data?.data?.map((list: any) => <Column key={list._id} list={list} />)}
+        <li>
+          <AddList />
+        </li>
+      </ol>
     </div>
   )
 }

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/consistent-type-definitions */
 import 'next-auth'
 
 declare module 'next-auth' {
