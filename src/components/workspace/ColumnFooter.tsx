@@ -4,7 +4,7 @@ import toast from 'react-hot-toast'
 import { AiOutlineClose } from 'react-icons/ai'
 import { BsPlusLg } from 'react-icons/bs'
 
-const AddCard = ({ listId }: { listId: string }) => {
+const ColumnFooter = ({ listId }: { listId: string }) => {
   const [open, setOpen] = useState(false)
   const [loading, setLoading] = useState(false)
   const [title, setTitle] = useState('')
@@ -65,4 +65,4 @@ const AddCard = ({ listId }: { listId: string }) => {
   )
 }
 
-export default AddCard
+export default ColumnFooter

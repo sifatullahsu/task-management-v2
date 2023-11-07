@@ -3,9 +3,9 @@ import { iChildren } from '@/types'
 
 const TaskLayout = ({ children }: iChildren) => {
   return (
-    <div>
+    <div className="task-layout">
       <Header />
-      {children}
+      <div className="relative">{children}</div>
     </div>
   )
 }

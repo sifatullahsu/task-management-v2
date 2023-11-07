@@ -5,7 +5,7 @@ import { AiOutlineDelete } from 'react-icons/ai'
 import { BsGrid1X2, BsThreeDotsVertical } from 'react-icons/bs'
 import { TbEdit } from 'react-icons/tb'
 
-const CardHeader = ({ _id, title }: { _id: string; title: string }) => {
+const ColumnHeader = ({ _id, title }: { _id: string; title: string }) => {
   const [edit, setEdit] = useState('')
   const [updateList] = useUpdateListMutation()
   const handleUpdate = async () => {
@@ -94,4 +94,4 @@ const CardHeader = ({ _id, title }: { _id: string; title: string }) => {
   )
 }
 
-export default CardHeader
+export default ColumnHeader

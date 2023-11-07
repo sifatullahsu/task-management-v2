@@ -1,27 +1,32 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import AddList from '@/components/workspace/AddList'
+import StrictModeDroppable from '@/components/dnd/StrictModeDroppable'
 import Column from '@/components/workspace/Column'
+import LastColumn from '@/components/workspace/LastColumn'
 import TaskLayout from '@/layouts/TaskLayout'
 import { useGetListsWithTaskQuery } from '@/redux/api/listApi'
 import { NextLayout } from '@/types'
+import { DragDropContext, DroppableProvided } from 'react-beautiful-dnd'
 
 const TasksPage: NextLayout = () => {
   const { data, isLoading } = useGetListsWithTaskQuery(undefined)
 
-  if (isLoading) return <div>Loading</div>
+  if (isLoading || !process.browser) return <div>Loading</div>
+  const handleDragEnd = (event: any) => {
+    console.log(event)
+  }
 
   return (
-    <div className="relative">
-      <ol className="workspace">
-        {data?.data?.map((list: any) => <Column key={list._id} list={list} />)}
-        <li>
-          <AddList />
-          <p className="text-sm text-accent mt-5">
-            Drag & Drop functionality <br /> will be added here.
-          </p>
-        </li>
-      </ol>
-    </div>
+    <DragDropContext onDragEnd={handleDragEnd}>
+      <StrictModeDroppable droppableId="rr_columns" type="COLUMN" direction="horizontal">
+        {(provided: DroppableProvided) => (
+          <div ref={provided.innerRef} {...provided.droppableProps} className="workspace">
+            {data?.data?.map((list: any, index: number) => <Column key={index} list={list} />)}
+            {provided.placeholder}
+            <LastColumn />
+          </div>
+        )}
+      </StrictModeDroppable>
+    </DragDropContext>
   )
 }
 TasksPage.getLayout = page => <TaskLayout>{page}</TaskLayout>

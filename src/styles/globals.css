@@ -48,7 +48,7 @@ body {
   padding: 12px;
 }
 
-.workspace>li {
+.workspace>div {
   display: block;
   flex-shrink: 0;
   align-self: flex-start;
@@ -56,8 +56,5 @@ body {
   padding: 0 6px;
   overflow-y: auto;
   overflow-x: hidden;
-}
-
-.workspace>li>div {
-  width: 270px;
+  width: 290px;
 }
