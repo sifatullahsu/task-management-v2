@@ -30,19 +30,19 @@ const Details = ({
   const { data, isLoading } = useGetTaskQuery({ id: _id })
 
   const [deleteConfirmation, setDeleteConfirmation] = useState(false)
-  const [isDeleting, setIsDeleting] = useState(false)
-  const [deleteTask] = useDeleteTaskMutation()
+  // const [isDeleting, setIsDeleting] = useState(false)
+  const [deleteTask, { isLoading: isDeleting }] = useDeleteTaskMutation()
   const deleteHandler = async () => {
-    setIsDeleting(true)
+    // setIsDeleting(true)
     const res = await deleteTask({ id: _id }).unwrap()
 
     if (res.status) {
       toast.success(res.message)
-      setIsDeleting(false)
+      // setIsDeleting(false)
       setOpen(false)
     } else {
       toast.error(res.message)
-      setIsDeleting(false)
+      // setIsDeleting(false)
     }
   }
 
@@ -168,7 +168,11 @@ const Details = ({
                   {isDeleting && <span className="loading loading-spinner"></span>}
                   Yes Delete
                 </button>
-                <button className="btn btn-ghost btn-sm" onClick={() => setDeleteConfirmation(false)}>
+                <button
+                  className="btn btn-ghost btn-sm"
+                  onClick={() => setDeleteConfirmation(false)}
+                  disabled={isDeleting}
+                >
                   Close
                 </button>
               </div>

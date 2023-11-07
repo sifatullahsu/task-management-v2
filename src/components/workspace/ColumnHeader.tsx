@@ -19,11 +19,12 @@ const ColumnHeader = ({ _id, title }: { _id: string; title: string }) => {
   }
 
   const [deleteConfirmation, setDeleteConfirmation] = useState(false)
-  const [deleteList] = useDeleteListMutation()
+  const [deleteList, { isLoading }] = useDeleteListMutation()
   const deleteHandler = async () => {
     const res = await deleteList({ id: _id }).unwrap()
 
     if (res.status) {
+      setDeleteConfirmation(false)
       toast.success(res.message)
     } else {
       toast.error(res.message)
@@ -54,8 +55,7 @@ const ColumnHeader = ({ _id, title }: { _id: string; title: string }) => {
           </>
         )}
       </div>
-
-      <div className="dropdown dropdown-end">
+      <div className="dropdown dropdown-end dropdown-hover">
         <label tabIndex={0}>
           <BsThreeDotsVertical className="h-6 w-6 p-[6px] cursor-pointer rounded-full hover:bg-neutral marker:hidden" />
         </label>
@@ -80,10 +80,15 @@ const ColumnHeader = ({ _id, title }: { _id: string; title: string }) => {
               recovered.
             </p>
             <div className="modal-action space-x-3">
-              <button className="btn btn-warning btn-sm" onClick={() => deleteHandler()}>
+              <button className="btn btn-warning btn-sm" onClick={() => deleteHandler()} disabled={isLoading}>
+                {isLoading && <span className="loading loading-spinner"></span>}
                 Yes Delete
               </button>
-              <button className="btn btn-ghost btn-sm" onClick={() => setDeleteConfirmation(false)}>
+              <button
+                className="btn btn-ghost btn-sm"
+                onClick={() => setDeleteConfirmation(false)}
+                disabled={isLoading}
+              >
                 Close
               </button>
             </div>
