@@ -29,7 +29,7 @@ const ColumnFooter = ({ listId }: { listId: string }) => {
   }
 
   return (
-    <div className="mt-10">
+    <div className="pt-10 px-3">
       {open ? (
         <div>
           <textarea

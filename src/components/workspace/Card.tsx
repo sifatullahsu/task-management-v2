@@ -7,7 +7,7 @@ import Details from './Details'
 const Card = ({ task }: { task: Record<string, any> }) => {
   const [open, setOpen] = useState(false)
   return (
-    <Draggable index={task.position} draggableId={`rr_task_${task._id}`}>
+    <Draggable index={task.position} draggableId={`tasks:${task._id}:${task.position}`}>
       {(provided: DraggableProvided) => (
         <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
           <div

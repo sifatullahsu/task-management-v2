@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   @apply font-roboto
 }
@@ -34,7 +38,7 @@ body {
   text-transform: unset;
 }
 
-.workspace {
+/* .workspace {
   display: flex;
   flex-direction: row;
   position: absolute;
@@ -57,4 +61,32 @@ body {
   overflow-y: auto;
   overflow-x: hidden;
   width: 290px;
+} */
+
+.workplace-container {
+  width: 100%;
+  padding: 8px;
+  /* height: calc(100vh - 72px); */
+  /* position: relative; */
+  /* overflow-y: hidden;
+  overflow-x: auto; */
+}
+
+.workplace {
+  display: inline-flex;
+  flex-wrap: nowrap;
+  gap: 12px;
+  /* overflow-y: hidden; */
+  /* cause */
+}
+
+.workplace-col {
+  flex: 0 0 290px;
+  max-width: 290px;
+  height: 100%;
+}
+
+.tasks {
+  @apply mt-5 space-y-2 overflow-y-auto;
+  max-height: calc(100vh - 230px);
 }

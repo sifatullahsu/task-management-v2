@@ -2,11 +2,8 @@ import AddList from './AddList'
 
 const LastColumn = () => {
   return (
-    <div>
+    <div className="workplace-col pr-3">
       <AddList />
-      <p className="text-sm text-accent mt-5">
-        Drag & Drop functionality <br /> will be added here.
-      </p>
     </div>
   )
 }

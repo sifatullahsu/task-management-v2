@@ -66,7 +66,13 @@ const Header = () => {
                 </ul>
               </div>
               <Link href="/">
-                <Image src={logo} alt="" width={120} className="bg-neutral-content px-2 py-1 rounded-lg" />
+                <Image
+                  src={logo}
+                  alt=""
+                  width={120}
+                  className="bg-neutral-content px-2 py-1 rounded-lg"
+                  priority={true}
+                />
               </Link>
             </div>
             <div className="navbar-end hidden lg:flex justify-end">

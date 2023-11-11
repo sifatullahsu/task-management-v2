@@ -30,19 +30,15 @@ const Details = ({
   const { data, isLoading } = useGetTaskQuery({ id: _id })
 
   const [deleteConfirmation, setDeleteConfirmation] = useState(false)
-  // const [isDeleting, setIsDeleting] = useState(false)
   const [deleteTask, { isLoading: isDeleting }] = useDeleteTaskMutation()
   const deleteHandler = async () => {
-    // setIsDeleting(true)
     const res = await deleteTask({ id: _id }).unwrap()
 
     if (res.status) {
       toast.success(res.message)
-      // setIsDeleting(false)
       setOpen(false)
     } else {
       toast.error(res.message)
-      // setIsDeleting(false)
     }
   }
 

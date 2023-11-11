@@ -5,7 +5,7 @@ const TaskLayout = ({ children }: iChildren) => {
   return (
     <div className="task-layout">
       <Header />
-      <div className="relative">{children}</div>
+      <div className="workplace-container">{children}</div>
     </div>
   )
 }
